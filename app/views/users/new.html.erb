@@ -1,0 +1,30 @@
+<h1>Please sign up!</h1>
+
+<%= form_tag "/users" do %>
+  <div>
+    <label>New Username:</label>
+    <input type="text" name="username">
+  </div>
+
+  <div>
+    <label>E-mail</label>
+    <input type="email" name="email" placeholder="somebody@somewhere.xxx">
+  </div>
+  <div>
+    <label>Birthdate</label>
+    <input type="date" name="bdaytime" placeholder="mm/dd/yyyy">
+  </div>
+  <div>
+    <label>Sex</label>
+    <input type="radio" name="sex" value="male" > Male
+    <br>
+    <input type="radio" name="sex" value="female"> Female
+  </div>
+  <div>
+    <label>Please select a password</label>
+    <input type="password" name="password" placeholder="dont tell anyone">
+  </div>
+  <input type="submit" value="Sign up!">
+
+  <% end %>
+  

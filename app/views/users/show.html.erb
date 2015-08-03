@@ -1,0 +1,35 @@
+
+<h2><%= @user.username %></h2>
+
+
+<!-- how do you tether certain messages to certain users? -->
+<p>
+<a class="btn btn-success pull-right" href="/users/">Home</a>
+</p>
+
+<p>
+  <%= @user.sex %>
+</p>
+
+<p>
+  <%= @user.birthdate %>
+</p>
+
+<p>
+  <span> <%= @user.email %> </span>
+</p>
+
+<p>
+	<small>
+		<a class="btn btn-success pull-right" href="/blogs/new"> Create a new blog now!</a>
+	</small>
+</p>
+
+<p>
+
+<p>
+<%= link_to "EDIT INFO", "/users/#{@user.id}/edit" %>
+</p>
+
+<p>
+<%= link_to "Create a new blog!", "/blogs/new" %>

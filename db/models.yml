@@ -1,0 +1,11 @@
+User
+  username: string
+  email: string
+  birthdate: date
+  sex: string
+  password: string
+
+Blog
+  name: text
+  user_id: integer
+  description: text

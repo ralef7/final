@@ -1,0 +1,20 @@
+<h1>Welcome to Twatter!</h1>
+<p>Please sign up and tell us whats on your mind!</p>
+
+<p>
+	<%= link_to 'Click here to view user blogs', "/blogs/" %>
+</p>
+<small>
+<a class="btn btn-success pull-right" href="/users/new"> Sign up now!</a>
+</small>
+
+<ul>
+	<% @users.each do |user| %>
+	<li>
+		<p>
+			<%= link_to user.username, "/users/#{user.id}" %>
+			<%= link_to "(delete)", "/users/#{user.id}", :method => "delete" %>
+		</p>
+	</li>
+	<% end %>
+</ul>

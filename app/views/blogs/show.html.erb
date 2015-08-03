@@ -1,0 +1,24 @@
+<p>
+<a class="btn btn-success pull-right" href="/blogs/">Home</a>
+</p>
+
+<h2>
+  <%= @blog.name %>
+</h2>
+
+<p>
+	Author name: <%= @blog.user.username %>
+</p>
+
+<p>
+  Description: <%= @blog.description %>
+</p>
+
+<p>
+	<small>
+		<a class="btn btn-success pull-right" href="/blogs/new"> Create a new blog now!</a>
+	</small>
+</p>
+
+<p>
+

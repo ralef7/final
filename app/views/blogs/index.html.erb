@@ -1,0 +1,13 @@
+<h1>Blogs</h1>
+
+<p>Please select a blog and begin reading our content!</p>
+
+<ul>
+	<% @blogs.each do |blog| %>
+	<li>
+		<p>
+			<%= link_to blog.name, "/blogs/#{blog.id}" %>
+		</p>
+	</li>
+	<% end %>
+</ul>
