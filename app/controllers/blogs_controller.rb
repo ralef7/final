@@ -23,7 +23,7 @@ class BlogsController < ApplicationController
 		blog.description = params["description"]
 		blog.user_id = params["user_id"]
 		blog.save
-		redirect_to root_url
+		redirect_to :action => 'index'
 	end
 
 
