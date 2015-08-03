@@ -1,5 +1,7 @@
+if !Rails.env.production?
 Blog.delete_all
 User.delete_all
+end
 
 rob = User.create(:username => 'rob231', :email => 'robmoney@gmail.com', :birthdate =>  '10/10/1986', :sex => 'male', :password => 'kashkow456')
 davis = User.create(:username => 'davis45', :email => 'davis@gmail.com', :birthdate => '05/10/1966', :sex => 'female', :password => 'digme123')

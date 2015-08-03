@@ -9,3 +9,5 @@ Blog
   name: text
   user_id: integer
   description: text
+
+Comment

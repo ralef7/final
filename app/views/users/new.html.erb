@@ -1,14 +1,14 @@
 <h1>Please sign up!</h1>
 
-<%= form_tag "/users" do %>
+<%= form_tag "/users", :method => 'post' do %>
   <div>
     <label>New Username:</label>
-    <input type="text" name="username">
+    <input type="text" name="username" required>
   </div>
 
   <div>
     <label>E-mail</label>
-    <input type="email" name="email" placeholder="somebody@somewhere.xxx">
+    <input type="email" name="email" placeholder="somebody@somewhere.xxx" required>
   </div>
   <div>
     <label>Birthdate</label>
@@ -22,7 +22,7 @@
   </div>
   <div>
     <label>Please select a password</label>
-    <input type="password" name="password" placeholder="dont tell anyone">
+    <input type="password" name="password" placeholder="dont tell anyone" required>
   </div>
   <input type="submit" value="Sign up!">
 

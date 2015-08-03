@@ -1,0 +1,22 @@
+<h1>Please sign your blog up!</h1>
+
+
+
+<%= form_tag "/blogs", :method => 'post' do %>
+  <div>
+    <label>New Blog Title:</label>
+    <input type="text" name="name">
+  </div>
+
+  <div>
+    <label>Description</label>
+    <input type="text" name="description" placeholder="describe your blog">
+  </div>
+   <select name="user_id">
+    <% User.all.each do |u| %>
+      <option value="<%= u.id %>"><%= u.username %></option>
+    <% end %>
+  </select>
+  <input type="submit" value="Register blog!">
+
+  <% end %>

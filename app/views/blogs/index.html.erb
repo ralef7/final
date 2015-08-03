@@ -7,7 +7,21 @@
 	<li>
 		<p>
 			<%= link_to blog.name, "/blogs/#{blog.id}" %>
+			<%= link_to "(delete)", "/blogs/#{blog.id}", :method => "delete" %>
 		</p>
+
 	</li>
 	<% end %>
 </ul>
+
+<p>
+	<small>
+		<a class="btn btn-success pull-right" href="/blogs/new"> Create a new blog now!</a>
+	</small>
+	<!-- if you're not already a user, please register -->
+<!-- please log in to create blog -->
+</p>
+
+<p>
+	<%= link_to "Users Home", "/users" %>
+</p>

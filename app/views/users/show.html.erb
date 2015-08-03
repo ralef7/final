@@ -8,28 +8,35 @@
 </p>
 
 <p>
-  <%= @user.sex %>
+  <b>Sex:</b> <%= @user.sex %>
 </p>
 
 <p>
-  <%= @user.birthdate %>
+  <b>Birthdate:</b> <%= @user.birthdate %>
 </p>
 
 <p>
-  <span> <%= @user.email %> </span>
+  <span><b>User Email:</b> <%= @user.email %> </span>
 </p>
 
-<p>
+<h3> <%= @user.username %> Blogs</h3>
+
+<ul>
+    <% @user.blog.each do |blog| %>
+      <li>
+        <%= link_to blog.name, "/blogs/#{blog.id}" %>
+      </li>
+    <% end %>
+  </ul>
+
+<!-- <p>
 	<small>
 		<a class="btn btn-success pull-right" href="/blogs/new"> Create a new blog now!</a>
 	</small>
-</p>
+</p> -->
 
 <p>
 
 <p>
 <%= link_to "EDIT INFO", "/users/#{@user.id}/edit" %>
 </p>
-
-<p>
-<%= link_to "Create a new blog!", "/blogs/new" %>
