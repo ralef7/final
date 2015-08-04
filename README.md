@@ -1,21 +1,8 @@
-# Week 4
+# Twatter
 
-To run this Rails app on your laptop:
+Currently, users are public because there is no login.  If a user wants to make an new blog, he would select his name from a dropdown menu as the blog's author.  As log in validation gets further implemented, blogs will be readonly by everyone except the author.
 
-1. Clone this repository
-1. bundle install
-1. rake db:migrate
-1. rake db:seed
-1. rails server
+TODO's: Blog entries, comments on blog entries, comments on blogs,  perhaps some sort of friending.
 
-At this point, you should be able to browse to `http://localhost:3000` and you should see a list of awesome movies.  
 
-*NOTE: On some systems, you may need to prefix steps 3 and 4 with 'bundle exec' i.e. 'bundle exec rake db:migrate'.*
 
-**WINDOWS 7 USERS**: You may have to modify the Gemfile by adding this line after you clone:
-
-``` ruby
-gem 'coffee-script-source', '1.8.0'
-```
-
-Then, the `bundle install` and `bundle exec rails server` might actually work.
