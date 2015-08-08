@@ -15,6 +15,20 @@
 </p>
 
 <p>
+<%= link_to "write a new post", "posts/new" %>
+</p>
+
+<p>
 	<%= link_to "EDIT BLOG", "/blogs/#{@blog.id}/edit" %>
+</p>
+
+<p>
+	 <h3>Blog Posts</h3>	
+	  <% Post.all.each do |p| %>
+	  <p>
+    	<%=link_to p.title, "/posts/#{p.id}" %>
+      </p>
+    <% end %> 
+   
 </p>
 

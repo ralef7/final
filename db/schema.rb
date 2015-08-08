@@ -21,6 +21,26 @@ ActiveRecord::Schema.define(version: 0) do
 
   add_index "blogs", ["user_id"], name: "index_blogs_on_user_id"
 
+  create_table "comments", force: true do |t|
+    t.string  "title"
+    t.text    "text"
+    t.integer "blog_id"
+    t.integer "post_id"
+    t.integer "user_id"
+  end
+
+  add_index "comments", ["blog_id"], name: "index_comments_on_blog_id"
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "posts", force: true do |t|
+    t.string  "title"
+    t.text    "text"
+    t.integer "blog_id"
+  end
+
+  add_index "posts", ["blog_id"], name: "index_posts_on_blog_id"
+
   create_table "users", force: true do |t|
     t.string "username"
     t.string "email"

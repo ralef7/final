@@ -25,6 +25,7 @@
     <% @user.blog.each do |blog| %>
       <li>
         <%= link_to blog.name, "/blogs/#{blog.id}" %>
+        <%= link_to "(delete)", "/blogs/#{blog.id}", :method => "delete" %>
       </li>
     <% end %>
   </ul>

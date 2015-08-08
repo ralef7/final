@@ -18,18 +18,24 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		user= User.new
-		user.username = params["username"]
-		user.email  = params["email"]
-		user.birthdate = params["bdaytime"]
-		user.sex = params["sex"]
-		user.password = params["password"]
-		user.save
-		redirect_to root_url
+		@user= User.new
+		@user.username = params["username"]
+		@user.email  = params["email"]
+		@user.birthdate = params["bdaytime"]
+		@user.sex = params["sex"]
+		@user.password = params["password"]
+	    @user.password_confirmation = params["password_confirmation"]
+		
+		if  @user.save
+			flash[:notice] = "Thanks for signing up!"
+			redirect_to root_url
+		else
+			render "new"
+		end
 	end
 
 	def show
-		@user = User.find_by(:id => params["id"])
+		@user = User.find(session[:user_id])
 	end
 
 	def update
@@ -38,8 +44,17 @@ class UsersController < ApplicationController
 		@user.birthdate = params[:birthdate]
 		@user.sex = params[:sex]
 		@user.password = params[:password]
-		@user.save
-		redirect_to :action => 'show', :id => params[:id]
-	end
 
+		if @user.password.present? && @user.password == params[:password_confirmation] 
+			if @user.save
+				flash[:notice] = "Account updated."
+				redirect_to user_url(@user.id)
+			else
+				render 'edit'
+			end
+		else
+			@user.errors.add(:password, "doesn't match")
+			render 'edit'
+		end
+	end
 end

@@ -10,4 +10,14 @@ Blog
   user_id: integer
   description: text
 
+Post
+  title: string
+  text: text
+  blog_id: integer
+
 Comment
+  title: string
+  text: text
+  blog_id: integer
+  post_id: integer
+  user_id: integer
