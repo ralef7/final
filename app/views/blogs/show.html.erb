@@ -11,20 +11,25 @@
 </p>
 
 <p>
-  <b>Description:</b> <%= @blog.description %>
+	<b>Description:</b> <%= @blog.description %>
 </p>
 
 <p>
-<%= link_to "write a new post", "posts/new" %>
+	<%= link_to "write new post", controller: "posts", action: "new" %>
 </p>
 
+<!-- this should only be available to the author -->
 <p>
 	<%= link_to "EDIT BLOG", "/blogs/#{@blog.id}/edit" %>
 </p>
 
 <p>
+	<%= link_to "Click here to follow this blog" %>
+</p>
+
+<p>
 	 <h3>Blog Posts</h3>	
-	  <% Post.all.each do |p| %>
+	  <% Post.where(blog_id: @blog.id).each do |p| %>
 	  <p>
     	<%=link_to p.title, "/posts/#{p.id}" %>
       </p>

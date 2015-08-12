@@ -24,14 +24,20 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "comments", force: true do |t|
     t.string  "title"
     t.text    "text"
-    t.integer "blog_id"
     t.integer "post_id"
     t.integer "user_id"
   end
 
-  add_index "comments", ["blog_id"], name: "index_comments_on_blog_id"
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "follows", force: true do |t|
+    t.integer "blog_id"
+    t.integer "user_id"
+  end
+
+  add_index "follows", ["blog_id"], name: "index_follows_on_blog_id"
+  add_index "follows", ["user_id"], name: "index_follows_on_user_id"
 
   create_table "posts", force: true do |t|
     t.string  "title"

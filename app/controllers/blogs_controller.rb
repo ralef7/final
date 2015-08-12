@@ -5,6 +5,7 @@ class BlogsController < ApplicationController
 	end
 
 	def new
+		@author = User.find(session[:user_id])
 	end
 
 	def edit

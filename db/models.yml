@@ -18,6 +18,9 @@ Post
 Comment
   title: string
   text: text
-  blog_id: integer
   post_id: integer
+  user_id: integer
+
+Follow
+  blog_id: integer
   user_id: integer

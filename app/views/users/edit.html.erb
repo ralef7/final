@@ -1,5 +1,7 @@
 <h1>Edit <%= @user.username %></h1>
 
+<!-- email confirm needed! -->
+
  <%= form_tag "/users/#{@user.id}", :method => "patch" do %>
  <div>
   <label>Email</label>
@@ -18,6 +20,11 @@
 <div>
   <label>Password</label>
   <input  type="password" name="password" value= "<%= @user.password %>"> 
+</div>
+<div>
+<div>
+  <label>Confirm Password</label>
+  <input  type="password" name="password_confirmation" value= "<%= @user.password %>"> 
 </div>
 <div>
   <input type="submit" value= "Update User">

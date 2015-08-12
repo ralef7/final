@@ -35,11 +35,11 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find(session[:user_id])
+		@user = User.find(params[:id])
 	end
 
 	def update
-		@user = User.find_by(:id => params["id"])
+		@user = User.find_by(:id => session["user_id"])
 		@user.email = params[:email]
 		@user.birthdate = params[:birthdate]
 		@user.sex = params[:sex]
