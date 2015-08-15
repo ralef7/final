@@ -14,6 +14,9 @@
 	      </p>
 	    <% end %>
     <% end %> 
+<% if session[:user_id] != nil %>
+	<%= link_to "Edit post", "/posts/#{@post.id}/edit" %>
+<% end %>
 
 <% if session[:user_id] != nil %>
 
@@ -50,6 +53,7 @@
        <p> <%= comment.user.username %> </p>
        <% if comment.user.id == session[:user_id] %>
         <%= link_to "(delete)", "/comments/#{comment.id}", :method => "delete" %>
+        <%= link_to "(edit)", "/comments/#{comment.id}/edit" %>
         <% end %>
       </li>
 </ul> 

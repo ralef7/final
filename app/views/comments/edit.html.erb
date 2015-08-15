@@ -1,0 +1,23 @@
+<h1>Edit <%= @comment.title %></h1>
+
+ <%= form_tag "/comments/#{@comment.id}", :method => "patch" do %>
+ <div>
+  <label>Title</label>
+  <input  type="text" name="title" value= "<%= @comment.title %>">
+</div>
+<div>
+  <label>Text</label>
+</div>
+<div>
+  <%= text_area_tag('text',  @comment.text, size: "25x10") %>
+</div>
+<div>
+  <input  type="hidden" name="post_id" value= "<%= @comment.post_id %>">
+</div>
+<div>
+  <input  type="hidden" name="user_id" value= "<%= @comment.user_id %>">
+</div>
+<div>
+  <input type="submit" value= "Update Blog">
+</div>
+<% end %>

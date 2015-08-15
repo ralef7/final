@@ -33,10 +33,11 @@
 
 <% if session[:user_id] != nil && session[:user_id] != @blog.user.id %>
 <% if !Follow.exists?(:user_id => session[:user_id], :blog_id => @blog.id)%>
+
   <%= form_tag "/follows", :method => 'post' do %>
   <div>
-  	<input type="text" name="blog_id" value= "<%=@blog.id %>">
-  	<input type="submit" value="Follow!">
+  	<input type="hidden" name="blog_id" value= "<%=@blog.id %>">
+  	<input type="submit" value="Follow This Blog!">
   <% end %>
   <% end %>
   </div>

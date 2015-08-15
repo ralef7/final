@@ -1,0 +1,24 @@
+<h1>Edit <%= @post.title %></h1>
+
+<!-- email confirm needed! -->
+
+ <%= form_tag "/posts/#{@post.id}", :method => "patch" do %>
+ <div>
+ <label>Title</label>
+ <input type="text" name="title" value = "<%= @post.title %>">
+ </div>
+ <div>
+  <label>Text</label>
+  <input  type="text" name="text" value= "<%= @post.text %>">
+</div>
+<div>
+  <label>Blog</label>
+  <select name="blog_id">
+    <% Blog.where(:user_id => session[:user_id]) .each do |b| %>
+      <option value="<%= b.id %>"><%= b.name %></option>
+    <% end %> 
+</div>
+<div>
+  <input type="submit" value= "Update Post">
+</div>
+<% end %>

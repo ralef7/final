@@ -16,9 +16,17 @@ class CommentsController <ApplicationController
 	end
 
 	def edit
+		@comment = Comment.find(params["id"])
 	end
 
 	def update
+		@comment = Comment.find_by(:id => params["id"])
+		@comment.title = params["title"]
+		@comment.text = params["text"]
+	    @comment.user_id = session["user_id"]
+	    @comment.post_id = params["post_id"]
+		@comment.save
+		redirect_to "/posts/#{@comment.post_id}"
 	end
 
 	def delete
@@ -30,6 +38,5 @@ class CommentsController <ApplicationController
 	def show
 		@comment = Comment.find(params["id"])
 	end
-
 
 end
