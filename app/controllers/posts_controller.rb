@@ -14,7 +14,7 @@ class PostsController <ApplicationController
 		@post.text = params["text"]
 		@post.blog_id = params["blog_id"]
 		@post.save
-		redirect_to :back
+		redirect_to "/blogs/#{@post.blog_id}"
 	end
 
 	def show
@@ -22,6 +22,9 @@ class PostsController <ApplicationController
 	end
 
 	def delete
+		@post = Follow.find_by(:id => params["id"])
+		@post.delete
+		redirect_to :back
 	end
 
 	def edit

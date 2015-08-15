@@ -2,6 +2,9 @@
 
 <%= form_tag "/posts", :method => 'post' do %>
   <div>
+  <label>FIRST SELECT THE BLOG YOU'RE POSTING IN</label>
+  </div>
+  <div>
     <select name="blog_id">
     <% Blog.where(:user_id => session[:user_id]) .each do |b| %>
       <option value="<%= b.id %>"><%= b.name %></option>

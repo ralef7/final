@@ -12,7 +12,7 @@
 
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 <ul class="nav navbar-nav navbar-right">
-	<% if session[:user_id] %>
+	<% if session[:user_id] && session[:user_id] != nil %>
 		<li> Hello, <%=User.find(session[:user_id]).username %></li>
 	<% end %>
 	

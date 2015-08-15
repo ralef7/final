@@ -47,8 +47,10 @@
       <li>
        <p><b><i> <%= comment.title  %> </i></b></p>
        <p> <%= comment.text %> </p>
-       <p> <%= User.find(session[:user_id]).username %> </p>
+       <p> <%= comment.user.username %> </p>
+       <% if comment.user.id == session[:user_id] %>
         <%= link_to "(delete)", "/comments/#{comment.id}", :method => "delete" %>
+        <% end %>
       </li>
 </ul> 
     <% end %>

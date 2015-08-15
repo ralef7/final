@@ -32,9 +32,10 @@
 
   <h3> Blogs Followed </h3>
     <ul>
-      <% Follow.where(:user_id => session[:user_id]).uniq_by(:blog_id).each  do |follow| %>
+      <% Follow.where(:user_id => session[:user_id]).each  do |follow| %>
         <li>
-          <%= link_to follow.blog_id, "/blogs/#{follow.blog_id}" %>
+          <%= link_to follow.blog.name, "/blogs/#{follow.blog_id}" %>
+          <%= link_to "(unfollow)", "/follows/#{follow.id}", :method => 'delete' %>
         </li>
         <% end %>
     </ul>

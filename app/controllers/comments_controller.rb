@@ -9,7 +9,7 @@ class CommentsController <ApplicationController
 		comment= Comment.new
 		comment.title = params["title"]
 		comment.text = params["text"]
-	    comment.user_id = params["user_id"]
+	    comment.user_id = session["user_id"]
 	    comment.post_id = params["post_id"]
 		comment.save
 		redirect_to "/posts/#{comment.post_id}"
