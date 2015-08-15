@@ -3,7 +3,7 @@ User
   email: string
   birthdate: date
   sex: string
-  password: string
+  password_digest: string
 
 Blog
   name: text

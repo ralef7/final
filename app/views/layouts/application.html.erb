@@ -9,15 +9,22 @@
 <body>
 
 
+
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 <ul class="nav navbar-nav navbar-right">
 	<% if session[:user_id] %>
 		<li> Hello, <%=User.find(session[:user_id]).username %></li>
 	<% end %>
+	
+	<% if session[:user_id] == nil %>
 	<li><a href="/users/new">Sign Up!</a></li>
 	<li><a href="/sessions/new">Sign In!</a></li>
+	<% end %>
+
+	<% if session[:user_id] != nil %>
 	<li><a href="/account">My Account</a></li>
 	<li><a href="/logout">Sign Out</a></li>
+	<% end %>
 </ul>
 </div>
 

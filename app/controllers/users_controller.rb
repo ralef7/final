@@ -1,7 +1,23 @@
 class UsersController < ApplicationController
 
+	# before_action :require_login, except: [:new, :create]
+	# before_action :authorize_user, only: [:show, :edit, :update]
+
+	# def require_login
+	# 	@user = User.find_by(id: session[:user_id])
+	# 	if @user.blank?
+	# 		redirect_to root_url, notice: "Please login first."
+	# 	end
+	# end
+
+	# def authorize_user
+	# 	if @user.id != params[:id].to_i
+	# 		redirect_to root_url, notice: "Nice Try!"
+	# 	end
+	# end
+
 	def index
-		@users = User.all
+		@users = User.limit(500)
 	end
 
 	def new
@@ -28,14 +44,14 @@ class UsersController < ApplicationController
 		
 		if  @user.save
 			flash[:notice] = "Thanks for signing up!"
-			redirect_to root_url
+			redirect_to blogs_url
 		else
 			render "new"
 		end
 	end
 
 	def show
-		@user = User.find(params[:id])
+		@user = User.find(session[:user_id])
 	end
 
 	def update

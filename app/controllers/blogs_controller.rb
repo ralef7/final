@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
 
 	def index
-		@blogs = Blog.order("name asc")
+		@blogs = Blog.order("name asc").limit(500)
 	end
 
 	def new
@@ -22,7 +22,7 @@ class BlogsController < ApplicationController
 		blog= Blog.new
 		blog.name = params["name"]
 		blog.description = params["description"]
-		blog.user_id = params["user_id"]
+		blog.user_id = session["user_id"]
 		blog.save
 		redirect_to :action => 'index'
 	end

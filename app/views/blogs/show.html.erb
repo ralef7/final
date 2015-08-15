@@ -6,33 +6,48 @@
   <%= @blog.name %>
 </h2>
 
+<% if (@blog.user.id == session[:user_id]) %>
 <p>
  	<b>Author:</b>	<%= link_to @blog.user.username, "/users/#{@blog.user.id}" %>
 </p>
+<% else %>
+<p>
+	<b>Author:</b>	<%= @blog.user.username %>
+</p>
+<% end %>
+
 
 <p>
 	<b>Description:</b> <%= @blog.description %>
 </p>
 
-<p>
-	<%= link_to "write new post", controller: "posts", action: "new" %>
-</p>
 
-<!-- this should only be available to the author -->
-<p>
-	<%= link_to "EDIT BLOG", "/blogs/#{@blog.id}/edit" %>
-</p>
+<% if @blog.user.id == session[:user_id] %>
+	<p>
+		<%= link_to "write new post", controller: "posts", action: "new" %>
+	</p>
+	<p>
+		<%= link_to "EDIT BLOG", "/blogs/#{@blog.id}/edit" %>
+	</p>
+<% end %>
+
+<% if session[:user_id] != nil && session[:user_id] != @blog.user.id %>
+
+  <%= form_tag "/follows", :method => 'post' do %>
+  <div>
+  	<input type="text" name="blog_id" value= "<%=@blog.id %>">
+  	<input type="submit" value="Follow!">
+  <% end %>
+  </div>
+
+<% end %>
 
 <p>
-	<%= link_to "Click here to follow this blog" %>
-</p>
-
-<p>
-	 <h3>Blog Posts</h3>	
-	  <% Post.where(blog_id: @blog.id).each do |p| %>
-	  <p>
-    	<%=link_to p.title, "/posts/#{p.id}" %>
-      </p>
+	<h3>Blog Posts</h3>	
+	<% Post.where(:blog_id => @blog.id).each do |p| %>
+		  <p>
+	    	<%=link_to p.title, "/posts/#{p.id}" %>
+	      </p>
     <% end %> 
    
 </p>

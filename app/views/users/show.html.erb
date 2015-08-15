@@ -30,6 +30,15 @@
     <% end %>
   </ul>
 
+  <h3> Blogs Followed </h3>
+    <ul>
+      <% Follow.where(:user_id => session[:user_id]).uniq_by(:blog_id).each  do |follow| %>
+        <li>
+          <%= link_to follow.blog_id, "/blogs/#{follow.blog_id}" %>
+        </li>
+        <% end %>
+    </ul>
+
 <!-- <p>
 	<small>
 		<a class="btn btn-success pull-right" href="/blogs/new"> Create a new blog now!</a>

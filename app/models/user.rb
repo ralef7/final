@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
 
-	has_many :blogs
-	has_many :comments
-	has_many :follows
+	has_secure_password
 
-	has_many :followed_blogs, :through => :follows, source: :blog
+	has_many :blogs, dependent: :nullify
+	has_many :comments, dependent: :nullify
+	has_many :follows, dependent: :nullify
+
+	has_many :followed_blogs, :through => :follows, source: :blog, dependent: :nullify
 
 	validates :username, presence: true, uniqueness: true
 	validates :email, presence: true, uniqueness: true

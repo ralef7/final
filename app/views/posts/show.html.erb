@@ -2,6 +2,8 @@
 
 <p><%= @post.text %></p>
 
+<p><%= link_to"Back to #{@post.blog.name}", "/blogs/#{@post.blog.id}" %>
+
 
 <h2> Other posts from this blog </h2>
 
@@ -12,6 +14,8 @@
 	      </p>
 	    <% end %>
     <% end %> 
+
+<% if session[:user_id] != nil %>
 
 <h3>Leave a comment</h3>
 <%= form_tag "/comments/#{@post.id}", :method => 'post' do %>
@@ -31,6 +35,8 @@
   	<input type="submit" value="submit Comment!">
 <% end %>
   </div>
+
+<% end %>
 
 
 

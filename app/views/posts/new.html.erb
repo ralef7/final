@@ -3,7 +3,7 @@
 <%= form_tag "/posts", :method => 'post' do %>
   <div>
     <select name="blog_id">
-    <% Blog.all.each do |b| %>
+    <% Blog.where(:user_id => session[:user_id]) .each do |b| %>
       <option value="<%= b.id %>"><%= b.name %></option>
     <% end %>
   </select>
@@ -18,7 +18,7 @@
   <h3>Post</h3>
   </div>
   <div>
-  <%= text_area(:post, :text, cols:40, rows: 40) %>
+  <%= text_area_tag('text', nil, size: "25x10") %>
   </div>
   <div>
   <input type="submit" value="submit post!">

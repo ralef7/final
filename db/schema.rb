@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "users", force: true do |t|
     t.string "username"
     t.string "email"
-    t.date   "birthdate", limit: 255
+    t.date   "birthdate",       limit: 255
     t.string "sex"
-    t.string "password"
+    t.string "password_digest"
   end
 
 end

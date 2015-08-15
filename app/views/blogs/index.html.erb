@@ -13,14 +13,15 @@
 	<% end %>
 </ul>
 
+<% if (session[:user_id] != nil) %>
+
 <p>
 	<small>
 		<a class="btn btn-success pull-right" href="/blogs/new"> Create a new blog now!</a>
 	</small>
-	<!-- if you're not already a user, please register -->
-<!-- please log in to create blog -->
 </p>
+<% end %>
 
 <p>
-	<%= link_to "Users Home", "/users" %>
+	<%= link_to "Home Page", "/users" %>
 </p>
