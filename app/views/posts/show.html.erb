@@ -14,7 +14,7 @@
 	      </p>
 	    <% end %>
     <% end %> 
-<% if session[:user_id] != nil %>
+<% if @post.blog.user_id == session[:user_id] %>
 	<%= link_to "Edit post", "/posts/#{@post.id}/edit" %>
 <% end %>
 
