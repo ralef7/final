@@ -50,7 +50,7 @@
 		  <p>
 	    	<%=link_to p.title, "/posts/#{p.id}" %>
 	    	<% if session[:user_id] == @blog.user.id %>
-	    		<%= link_to "(delete)", "/posts/#{p.id}" %>
+	    		<%= link_to "(delete)", "/posts/#{p.id}", :method => 'delete' %>
 	    	<% end %>
 	      </p>
     <% end %> 

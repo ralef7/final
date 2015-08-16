@@ -6,7 +6,7 @@
   </div>
   <div>
     <select name="blog_id">
-    <% Blog.where(:user_id => session[:user_id]) .each do |b| %>
+    <% Blog.where(:user_id => session[:user_id]).limit(500).each do |b| %>
       <option value="<%= b.id %>"><%= b.name %></option>
     <% end %>
   </select>
