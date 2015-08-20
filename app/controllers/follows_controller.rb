@@ -1,7 +1,5 @@
 class FollowsController < ApplicationController
 
-
-
 	def create
 		@follow = Follow.new
 		@follow.user_id = session["user_id"]
@@ -15,6 +13,4 @@ class FollowsController < ApplicationController
 		@follow.destroy
 		redirect_to :back
 	end
-
-
 end

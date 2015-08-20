@@ -36,7 +36,6 @@ class BlogsController < ApplicationController
 		redirect_to :action => 'index'
 	end
 
-
 	def show
 		@blog = Blog.find_by(:id => params[:id])
 		@post = Post.where(:blog_id => @blog.id)
