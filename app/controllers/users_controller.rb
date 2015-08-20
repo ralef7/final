@@ -1,14 +1,6 @@
 class UsersController < ApplicationController
 
-	# before_action :require_login, except: [:new, :create]
 	  before_action :authorize_user, only: [:edit, :update]
-
-	# def require_login
-	# 	@user = User.find_by(id: session[:user_id])
-	# 	if @user.blank?
-	# 		redirect_to root_url, notice: "Please login first."
-	# 	end
-	# end
 
 	def authorize_user
 		@user = User.find_by(:id => params["id"])
@@ -25,7 +17,6 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		# @user = User.find_by(:id => params["id"])
 	end
 
 	def destroy
@@ -58,11 +49,10 @@ class UsersController < ApplicationController
 	end
 
 	def update
-
-		# @user = User.find_by(:id => session["user_id"])
 		@user.email = params[:email]
 		@user.birthdate = params[:birthdate]
 		@user.sex = params[:sex]
+		
 		if params[:password].present?
 			@user.password = params[:password]
 		end

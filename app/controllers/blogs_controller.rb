@@ -2,16 +2,9 @@ class BlogsController < ApplicationController
 
 	  before_action :authorize_user, only: [:edit, :update]
 
-	# def require_login
-	# 	@user = User.find_by(id: session[:user_id])
-	# 	if @user.blank?
-	# 		redirect_to root_url, notice: "Please login first."
-	# 	end
-	# end
-
 	def authorize_user
 		@blog = Blog.find_by(:id => params["id"])
-		if @blog.user_id != session[:user].to_i
+		if @blog.user_id != session[:user_id].to_i
 			redirect_to root_url, notice: "Nice Try!"
 		end
 	end
