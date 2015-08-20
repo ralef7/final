@@ -12,7 +12,7 @@ class FollowsController < ApplicationController
 
 	def delete
 		@follow = Follow.find_by(:id => params["id"])
-		@follow.delete
+		@follow.destroy
 		redirect_to :back
 	end
 

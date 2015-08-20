@@ -24,7 +24,7 @@
 
 <% if @blog.user.id == session[:user_id] %>
 	<p>
-		<%= link_to "write new post", controller: "posts", action: "new" %>
+		<%= link_to "write new post", controller: "posts", action: "new", :blog => @blog.id %>
 	</p>
 	<p>
 		<%= link_to "EDIT BLOG", "/blogs/#{@blog.id}/edit" %>
@@ -32,7 +32,8 @@
 <% end %>
 
 <% if session[:user_id] != nil && session[:user_id] != @blog.user.id %>
-<% if !Follow.exists?(:user_id => session[:user_id], :blog_id => @blog.id)%>
+<%# if !Follow.exists?(:user_id => session[:user_id], :blog_id => @blog.id)%>
+<% if !@follow %>
 
   <%= form_tag "/follows", :method => 'post' do %>
   <div>
@@ -46,7 +47,8 @@
 
 <p>
 	<h3>Blog Posts</h3>	
-	<% Post.where(:blog_id => @blog.id).each do |p| %>
+	 <!-- Post.where(:blog_id => @blog.id) -->
+	<%@post.each do |p| %>
 		  <p>
 	    	<%=link_to p.title, "/posts/#{p.id}" %>
 	    	<% if session[:user_id] == @blog.user.id %>

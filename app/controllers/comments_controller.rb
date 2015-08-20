@@ -1,5 +1,21 @@
 class CommentsController <ApplicationController
 
+	 before_action :authorize_user, only: [:edit, :update]
+
+	# def require_login
+	# 	@user = User.find_by(id: session[:user_id])
+	# 	if @user.blank?
+	# 		redirect_to root_url, notice: "Please login first."
+	# 	end
+	# end
+
+	def authorize_user
+		@comment = Comment.find_by(:id => params["id"])
+		if @comment.user_id != session[:user_id].to_i
+			redirect_to root_url, notice: "Nice Try!"
+		end
+	end
+
 
 	def new
 
@@ -16,11 +32,11 @@ class CommentsController <ApplicationController
 	end
 
 	def edit
-		@comment = Comment.find(params["id"])
+		# @comment = Comment.find(params["id"])
 	end
 
 	def update
-		@comment = Comment.find_by(:id => params["id"])
+		# @comment = Comment.find_by(:id => params["id"])
 		@comment.title = params["title"]
 		@comment.text = params["text"]
 	    @comment.user_id = session["user_id"]
@@ -31,7 +47,7 @@ class CommentsController <ApplicationController
 
 	def delete
 		@comment = Comment.find_by(:id => params["id"])
-		@comment.delete
+		@comment.destroy
 		redirect_to "/posts/#{@comment.post_id}"
 	end
 

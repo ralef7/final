@@ -32,7 +32,8 @@
 
   <h3> Blogs Followed </h3>
     <ul>
-      <% Follow.where(:user_id => session[:user_id]).limit(500).each  do |follow| %>
+      <% #Follow.where(:user_id => session[:user_id]).limit(500).each  do |follow| %>
+      <% @follow.each  do |follow| %> 
         <li>
           <%= link_to follow.blog.name, "/blogs/#{follow.blog_id}" %>
           <%= link_to "(unfollow)", "/follows/#{follow.id}", :method => 'delete' %>
@@ -40,11 +41,11 @@
         <% end %>
     </ul>
 
-<!-- <p>
+<p>
 	<small>
 		<a class="btn btn-success pull-right" href="/blogs/new"> Create a new blog now!</a>
 	</small>
-</p> -->
+</p>
 
 <p>
 

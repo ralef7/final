@@ -7,7 +7,7 @@
 
 <h2> Other posts from this blog </h2>
 
-	<% Post.where(blog_id: @post.blog_id).limit(500).each do |p| %>
+	<% @posts.each do |p| %>
 		<% if p.id != @post.id %>
 		  <p>
 	    	<%=link_to p.title, "/posts/#{p.id}" %>
@@ -41,12 +41,10 @@
 
 <% end %>
 
-
-
-
 <h3>Past comments</h3>
 <ul>
-    <% Comment.where(post_id: @post.id).limit(500).each do |comment| %>
+    <%# Comment.where(post_id: @post.id).limit(500).each do |comment| %>
+    <% @comments.each do |comment| %>
       <li>
        <p><b><i> <%= comment.title  %> </i></b></p>
        <p> <%= comment.text %> </p>

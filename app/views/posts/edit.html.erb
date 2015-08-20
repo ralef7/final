@@ -9,12 +9,14 @@
  </div>
  <div>
   <label>Text</label>
-  <input  type="text" name="text" value= "<%= @post.text %>">
+  <textarea cols="25" id="text" name="text" rows="10" ><%= @post.text %></textarea>
+  <!-- <input  type="text" name="text" value= "<%#= @post.text %>"> -->
 </div>
 <div>
   <label>Blog</label>
   <select name="blog_id">
-    <% Blog.where(:user_id => session[:user_id]).limit(500).each do |b| %>
+    <% #Blog.where(:user_id => session[:user_id]).limit(500).each do |b| %>
+    <% @blog.each do |b| %>
       <option value="<%= b.id %>"><%= b.name %></option>
     <% end %> 
 </div>

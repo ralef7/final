@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
 	# before_action :require_login, except: [:new, :create]
-	# before_action :authorize_user, only: [:show, :edit, :update]
+	  before_action :authorize_user, only: [:edit, :update]
 
 	# def require_login
 	# 	@user = User.find_by(id: session[:user_id])
@@ -10,11 +10,12 @@ class UsersController < ApplicationController
 	# 	end
 	# end
 
-	# def authorize_user
-	# 	if @user.id != params[:id].to_i
-	# 		redirect_to root_url, notice: "Nice Try!"
-	# 	end
-	# end
+	def authorize_user
+		@user = User.find_by(:id => params["id"])
+		if @user.id != session[:user_id].to_i
+			redirect_to root_url, notice: "Nice Try!"
+		end
+	end
 
 	def index
 		@users = User.limit(500)
@@ -24,12 +25,13 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		@user = User.find_by(:id => params["id"])
+		# @user = User.find_by(:id => params["id"])
 	end
 
 	def destroy
 		@user = User.find_by(:id => params["id"])
-		@user.delete
+		@user.destroy
+		reset_session	
 		redirect_to root_url
 	end
 
@@ -52,14 +54,18 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(session[:user_id])
+		@follow = Follow.where(:user_id => session[:user_id]).limit(500)
 	end
 
 	def update
-		@user = User.find_by(:id => session["user_id"])
+
+		# @user = User.find_by(:id => session["user_id"])
 		@user.email = params[:email]
 		@user.birthdate = params[:birthdate]
 		@user.sex = params[:sex]
-		@user.password = params[:password]
+		if params[:password].present?
+			@user.password = params[:password]
+		end
 
 		if @user.password.present? && @user.password == params[:password_confirmation] 
 			if @user.save

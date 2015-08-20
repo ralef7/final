@@ -18,6 +18,7 @@
   <input type="radio" name="sex" value="female"> Female
 </div>
 <div>
+<!-- reset password separate form -->
   <label>Password</label>
   <input  type="password" name="password" value= "<%= @user.password %>"> 
 </div>
@@ -30,4 +31,8 @@
   <input type="submit" value= "Update User">
 </div>
 <% end %>
+
+<div>
+  <%= link_to "Click here to delete user", "/users/#{@user.id}", :method => "delete" %>
+</div>
 

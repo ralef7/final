@@ -1,21 +1,20 @@
-<h1>Write a Blog Post</h1>
+<h1>Write a Blog Post for </h1>
 
 <%= form_tag "/posts", :method => 'post' do %>
   <div>
-  <label>FIRST SELECT THE BLOG YOU'RE POSTING IN</label>
   </div>
   <div>
-    <select name="blog_id">
-    <% Blog.where(:user_id => session[:user_id]).limit(500).each do |b| %>
-      <option value="<%= b.id %>"><%= b.name %></option>
-    <% end %>
-  </select>
+  New post for <%= @blog.name %>
   </div>
   <div>
     <label>Post Title:</label>
   </div>
-  <input type="text" name="title">
+    <input type="text" name="title">
   <div>
+  </div>
+    <input type="hidden" name="blog_id" value= "<%=params[:blog]%>">
+  <div>
+
   </div>
   <div>
   <h3>Post</h3>

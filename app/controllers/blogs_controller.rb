@@ -1,5 +1,21 @@
 class BlogsController < ApplicationController
 
+	  before_action :authorize_user, only: [:edit, :update]
+
+	# def require_login
+	# 	@user = User.find_by(id: session[:user_id])
+	# 	if @user.blank?
+	# 		redirect_to root_url, notice: "Please login first."
+	# 	end
+	# end
+
+	def authorize_user
+		@blog = Blog.find_by(:id => params["id"])
+		if @blog.user_id != session[:user].to_i
+			redirect_to root_url, notice: "Nice Try!"
+		end
+	end
+
 	def index
 		@blogs = Blog.order("name asc").limit(500)
 	end
@@ -14,7 +30,7 @@ class BlogsController < ApplicationController
 
 	def destroy
 		@blog = Blog.find_by(:id => params["id"])
-		@blog.delete
+		@blog.destroy
 		redirect_to :action => 'index'
 	end
 
@@ -30,6 +46,8 @@ class BlogsController < ApplicationController
 
 	def show
 		@blog = Blog.find_by(:id => params[:id])
+		@post = Post.where(:blog_id => @blog.id)
+		@follow = Follow.exists?(:user_id => session[:user_id], :blog_id => @blog.id)
 	end
 
 	def update
