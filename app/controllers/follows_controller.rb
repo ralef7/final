@@ -5,7 +5,7 @@ class FollowsController < ApplicationController
 		@follow.user_id = session["user_id"]
 		@follow.blog_id = params["blog_id"]
 		@follow.save
-		redirect_to :back
+		redirect_to :back, notice: "Now following #{@follow.blog.name}"
 	end 
 
 	def delete
