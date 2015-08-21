@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-	  before_action :authorize_user, only: [:edit, :update]
+	  before_action :authorize_user, only: [:edit, :update, :edit_password, :update_password]
 
 	def authorize_user
 		@user = User.find_by(:id => params["id"])
@@ -48,25 +48,30 @@ class UsersController < ApplicationController
 		@follow = Follow.where(:user_id => session[:user_id]).limit(500)
 	end
 
+	def edit_password
+	end
+
+	def update_password
+		@user.password = params[:password]
+		if @user.password.present? && @user.password == params[:password_confirmation]
+			@user.save
+			if @user.save
+				flash[:notice] = "Password updated"
+				redirect_to user_url(@user.id)
+			else
+				render 'edit_password'
+			end
+		else
+			@user.errors.add(:password, "doesnt match")
+			render 'edit_password'
+		end
+	end
+
 	def update
 		@user.email = params[:email]
 		@user.birthdate = params[:birthdate]
 		@user.sex = params[:sex]
-		
-		if params[:password].present?
-			@user.password = params[:password]
-		end
-
-		if @user.password.present? && @user.password == params[:password_confirmation] 
-			if @user.save
-				flash[:notice] = "Account updated."
-				redirect_to user_url(@user.id)
-			else
-				render 'edit'
-			end
-		else
-			@user.errors.add(:password, "doesn't match")
-			render 'edit'
-		end
+		@user.save
+		redirect_to user_url(@user.id)
 	end
 end

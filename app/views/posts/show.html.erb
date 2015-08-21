@@ -2,10 +2,10 @@
 
 <p><%= @post.text %></p>
 
-<p><%= link_to"Back to #{@post.blog.name}", "/blogs/#{@post.blog.id}" %>
+<p><%= link_to"Back to #{@post.blog.name}", "/blogs/#{@post.blog.id}" %></p>
 
 
-<h2> Other posts from this blog </h2>
+<Title> Other posts from this blog </Title>
 
 	<% @posts.each do |p| %>
 		<% if p.id != @post.id %>
@@ -43,7 +43,6 @@
 
 <h3>Past comments</h3>
 <ul>
-    <%# Comment.where(post_id: @post.id).limit(500).each do |comment| %>
     <% @comments.each do |comment| %>
       <li>
        <p><b><i> <%= comment.title  %> </i></b></p>

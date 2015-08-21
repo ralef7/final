@@ -2,35 +2,33 @@
 
 <!-- email confirm needed! -->
 
- <%= form_tag "/users/#{@user.id}", :method => "patch" do %>
- <div>
-  <label>Email</label>
-  <input  type="text" name="email" value= "<%= @user.email %>">
-</div>
+<%= form_tag "/users/#{@user.id}", :method => "patch" do %>
+  <div>
+    <label>Email</label>
+    <input  type="text" name="email" value= "<%= @user.email %>">
+  </div>
+  <div>
+    <label>Birthdate</label>
+    <input  type="date" name="birthdate" value= "<%= @user.birthdate%>">
+  </div>
+  <div>
+    <label>Sex</label>
+    <%if @user.sex == "male" %>
+      <input type="radio" name="sex" value="male" checked> Male
+      <input type="radio" name="sex" value="female"> Female
+    <% else %>
+       <input type="radio" name="sex" value="male"> Male
+      <input type="radio" name="sex" value="female" checked> Female
+    <% end %>
+  </div>
+  <div>
+    <input type="submit" value= "Update">
+  </div>
+<% end %>  
+
 <div>
-  <label>Birthdate</label>
-  <input  type="date" name="birthdate" value= "<%= @user.birthdate%>">
+<%= link_to "CLICK HERE TO UPDATE YOU PASSWORD", "/users/#{@user.id}/password" %>
 </div>
-<div>
-  <label>Sex</label>
-  <input  type="text" name="sex" value= "<%= @user.sex %>">
-  <input type="radio" name="sex" value="male" > Male
-  <input type="radio" name="sex" value="female"> Female
-</div>
-<div>
-<!-- reset password separate form -->
-  <label>Password</label>
-  <input  type="password" name="password" value= "<%= @user.password %>"> 
-</div>
-<div>
-<div>
-  <label>Confirm Password</label>
-  <input  type="password" name="password_confirmation" value= "<%= @user.password %>"> 
-</div>
-<div>
-  <input type="submit" value= "Update User">
-</div>
-<% end %>
 
 <div>
   <%= link_to "Click here to delete user", "/users/#{@user.id}", :method => "delete" %>

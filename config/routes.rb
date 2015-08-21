@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   get '/account' => 'users#show'
 
   resources :users
+  get  '/users/:id/password' => 'users#edit_password'
+  patch 'users/:id/password' => 'users#update_password'
+
   resources :blogs
-  resources :password_resets,    only: [:new, :create, :edit, :update]
  
 end
