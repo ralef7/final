@@ -1,5 +1,5 @@
 <p>
-<a class="btn btn-success pull-right" href="/blogs/">Blog Home</a>
+	<a class="btn btn-success pull-right" href="/blogs/">Blog Home</a>
 </p>
 
 <h2>
@@ -7,21 +7,19 @@
 </h2>
 
 <% if (@blog.user.id == session[:user_id]) %>
-<p>
- 	<b>Author:</b>	<%= link_to @blog.user.username, "/users/#{@blog.user.id}" %>
-</p>
+	<p>
+	 	<b>Author:</b>	<%= link_to @blog.user.username, "/users/#{@blog.user.id}" %>
+	</p>
 <% else %>
-<p>
-	<b>Author:</b>	<%= @blog.user.username %>
-</p>
+	<p>
+		<b>Author:</b>	<%= @blog.user.username %>
+	</p>
 <% end %>
 
 
 <p>
-	<b>Description:</b> <%= @blog.description %>
+	<b>Description:</b> <%= simple_format h @blog.description %>
 </p>
-
-
 <% if @blog.user.id == session[:user_id] %>
 	<p>
 		<%= link_to "write new post", controller: "posts", action: "new", :blog => @blog.id %>
@@ -31,31 +29,24 @@
 	</p>
 <% end %>
 
-<% if session[:user_id] != nil && session[:user_id] != @blog.user.id %>
-<%# if !Follow.exists?(:user_id => session[:user_id], :blog_id => @blog.id)%>
-<% if !@follow %>
-
+<% if session[:user_id] != nil && session[:user_id] != @blog.user.id && !@follow%>
   <%= form_tag "/follows", :method => 'post' do %>
   <div>
   	<input type="hidden" name="blog_id" value= "<%=@blog.id %>">
   	<input type="submit" value="Follow This Blog!">
   <% end %>
-  <% end %>
   </div>
-
 <% end %>
 
 <p>
 	<h3>Blog Posts</h3>	
-	 <!-- Post.where(:blog_id => @blog.id) -->
-	<%@post.each do |p| %>
-		  <p>
-	    	<%=link_to p.title, "/posts/#{p.id}" %>
-	    	<% if session[:user_id] == @blog.user.id %>
-	    		<%= link_to "(delete)", "/posts/#{p.id}", :method => 'delete' %>
-	    	<% end %>
-	      </p>
-    <% end %> 
-   
+		<%@post.each do |p| %>
+			<p>
+		    	<%=link_to p.title, "/posts/#{p.id}" %>
+		    	<% if session[:user_id] == @blog.user.id %>
+		    		<%= link_to "(delete)", "/posts/#{p.id}", :method => 'delete' %>
+		    	<% end %>
+		    </p>
+	    <% end %>    
 </p>
 

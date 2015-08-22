@@ -4,5 +4,4 @@ class Post < ActiveRecord::Base
 	has_many :comment, dependent: :nullify
 
 	validates :text, presence: :true
-
 end

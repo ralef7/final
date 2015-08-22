@@ -18,29 +18,13 @@
 	<% end %>
 	
 	<% if session[:user_id] == nil %>
-	<div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="/users/">Home</a></li>
-          <li><a href="/users/new">Sign Up!</a></li>
-          <li><a href="/sessions/new">Sign In</a></li>
-        </ul>
-        <h3 class="muted">Rob Alef Final Twatter</h3>
-      </div>
-	<!-- <li><a href="/users/new">Sign Up!</a></li>
-	<li><a href="/sessions/new">Sign In!</a></li> -->
+		<li><a href="/users/new">Sign Up!</a></li>
+		<li><a href="/sessions/new">Sign In!</a></li>
 	<% end %>
 
 	<% if session[:user_id] != nil %>
-	<div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="/users/">Home</a></li>
-          <li><a href="/account">My Account</a></li>
-          <li><a href="/logout">Sign Out</a></li>
-        </ul>
-        <h3 class="muted">Rob Alef Final Twatter</h3>
-      </div>
-	<!-- <li><a href="/account">My Account</a></li>
-	<li><a href="/logout">Sign Out</a></li> -->
+		<li><a href="/account">My Account</a></li>
+		<li><a href="/logout">Sign Out</a></li>
 	<% end %>
 </ul>
 </div>

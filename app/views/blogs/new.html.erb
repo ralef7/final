@@ -2,20 +2,19 @@
 
 
 <%= form_tag "/blogs", :method => 'post' do %>
-<div>
-  <label>Author:</label>
-  <%= @author.username %>
-</div>
+
+  <div>
+    <label>Author:</label>
+    <%= @author.username %>
+  </div>
   <div>
     <label>New Blog Title:</label>
     <input type="text" name="name">
   </div>
-
   <div>
     <label>Description</label>
     <input type="text" name="description" placeholder="describe your blog">
   </div>
-
   <input type="submit" value="Register blog!">
 
   <% end %>
