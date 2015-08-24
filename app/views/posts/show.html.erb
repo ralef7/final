@@ -5,40 +5,38 @@
 <p><%= link_to"Back to #{@post.blog.name}", "/blogs/#{@post.blog.id}" %></p>
 
 
-<Title> Other posts from this blog </Title>
-
+<h3> Other posts from this blog </h3>
 	<% @posts.each do |p| %>
 		<% if p.id != @post.id %>
 		  <p>
 	    	<%=link_to p.title, "/posts/#{p.id}" %>
-	      </p>
-	    <% end %>
-    <% end %> 
+	    </p>
+	  <% end %>
+  <% end %> 
+
 <% if @post.blog.user_id == session[:user_id] %>
 	<%= link_to "Edit post", "/posts/#{@post.id}/edit" %>
 <% end %>
 
 <% if session[:user_id] != nil %>
-
-<h3>Leave a comment</h3>
-<%= form_tag "/comments/#{@post.id}", :method => 'post' do %>
-  <div>
-    <label>Comment Title:</label>
-  </div>
-  	<input type="text" name="title">
-  <div>
-  </div>
-  <div>
-  	<label>Leave a Comment</label>
-  </div>
-  <div>
-  	<%= text_area_tag 'text', nil, rows:10, cols: 20 %>
-  </div>
-  <div>
-  	<input type="submit" value="submit Comment!">
-<% end %>
-  </div>
-
+  <h3>Leave a comment</h3>
+  <%= form_tag "/comments/#{@post.id}", :method => 'post' do %>
+    <div>
+      <label>Comment Title:</label>
+    </div>
+    <div>
+    	<input type="text" name="title">
+    </div>
+    <div>
+    	<label>Leave a Comment</label>
+    </div>
+    <div>
+    	<%= text_area_tag 'text', nil, rows:10, cols: 20 %>
+    </div>
+    <div>
+    	<input type="submit" value="submit Comment!">
+    </div>
+  <% end %>
 <% end %>
 
 <h3>Past comments</h3>
@@ -49,10 +47,11 @@
        <p> <%= simple_format h comment.text %> </p>
        <p> <%= comment.user.username %> </p>
        <% if comment.user.id == session[:user_id] %>
-        <%= link_to "(delete)", "/comments/#{comment.id}", :method => "delete" %>
-        <%= link_to "(edit)", "/comments/#{comment.id}/edit" %>
-        <% end %>
+         <%= link_to "(delete)", "/comments/#{comment.id}", :method => "delete" %>
+         <%= link_to "(edit)", "/comments/#{comment.id}/edit" %>
+       <% end %>
       </li>
-</ul> 
     <% end %>
+</ul> 
+   
   

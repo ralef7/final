@@ -4,22 +4,20 @@
 
 <ul>
 	<% @blogs.each do |blog| %>
-	<li>
-		<p>
-			<%= link_to blog.name, "/blogs/#{blog.id}" %>
-		</p>
-
-	</li>
+		<li>
+			<p>
+				<%= link_to blog.name, "/blogs/#{blog.id}" %>
+			</p>
+		</li>
 	<% end %>
 </ul>
 
 <% if (session[:user_id] != nil) %>
-
-<p>
-	<small>
-		<a class="btn btn-success pull-right" href="/blogs/new"> Create a new blog now!</a>
-	</small>
-</p>
+	<p>
+		<small>
+			<a class="btn btn-success pull-right" href="/blogs/new"> Create a new blog now!</a>
+		</small>
+	</p>
 <% end %>
 
 <p>

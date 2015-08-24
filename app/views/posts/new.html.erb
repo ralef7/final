@@ -2,22 +2,19 @@
 
 <%= form_tag "/posts", :method => 'post' do %>
   <div>
-  </div>
-  <div>
-  New post for <%= @blog.name %>
+    New post for <%= @blog.name %>
   </div>
   <div>
     <label>Post Title:</label>
   </div>
+  <div>
     <input type="text" name="title">
-  <div>
   </div>
+  <div>
     <input type="hidden" name="blog_id" value= "<%=params[:blog]%>">
-  <div>
-
   </div>
   <div>
-  <h3>Post</h3>
+    <h3>Post</h3>
   </div>
   <div>
     <%= text_area_tag('text', nil, size: "25x10") %>

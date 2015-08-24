@@ -31,22 +31,22 @@
 
 <% if session[:user_id] != nil && session[:user_id] != @blog.user.id && !@follow%>
   <%= form_tag "/follows", :method => 'post' do %>
-  <div>
-  	<input type="hidden" name="blog_id" value= "<%=@blog.id %>">
-  	<input type="submit" value="Follow This Blog!">
+	  <div>
+	  	<input type="hidden" name="blog_id" value= "<%=@blog.id %>">
+	  	<input type="submit" value="Follow This Blog!">
+	  </div>
   <% end %>
-  </div>
 <% end %>
 
 <p>
 	<h3>Blog Posts</h3>	
-		<%@post.each do |p| %>
+		<%@posts.each do |p| %>
 			<p>
 		    	<%=link_to p.title, "/posts/#{p.id}" %>
 		    	<% if session[:user_id] == @blog.user.id %>
 		    		<%= link_to "(delete)", "/posts/#{p.id}", :method => 'delete' %>
 		    	<% end %>
-		    </p>
-	    <% end %>    
+		  </p>
+	  <% end %>    
 </p>
 

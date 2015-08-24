@@ -1,26 +1,23 @@
 <h1>Edit <%= @post.title %></h1>
 
-<!-- email confirm needed! -->
-
- <%= form_tag "/posts/#{@post.id}", :method => "patch" do %>
- <div>
- <label>Title</label>
- <input type="text" name="title" value = "<%= @post.title %>">
- </div>
- <div>
-  <label>Text</label>
-  <textarea cols="25" id="text" name="text" rows="10" ><%= @post.text %></textarea>
-  <!-- <input  type="text" name="text" value= "<%#= @post.text %>"> -->
-</div>
-<div>
-  <label>Blog</label>
-  <select name="blog_id">
-    <% #Blog.where(:user_id => session[:user_id]).limit(500).each do |b| %>
-    <% @blog.each do |b| %>
+<%= form_tag "/posts/#{@post.id}", :method => "patch" do %>
+  <div>
+	  <label>Title</label>
+	  <input type="text" name="title" value = "<%= @post.title %>">
+  </div>
+  <div>
+    <label>Text</label>
+    <textarea cols="25" id="text" name="text" rows="10" ><%= @post.text %></textarea>
+  </div>
+  <div>
+    <label>Blog</label>
+    <select name="blog_id">
+    <% @blogs.each do |b| %>
       <option value="<%= b.id %>"><%= b.name %></option>
     <% end %> 
-</div>
-<div>
-  <input type="submit" value= "Update Post">
-</div>
+    </select>
+  </div>
+  <div>
+    <input type="submit" value= "Update Post">
+  </div>
 <% end %>

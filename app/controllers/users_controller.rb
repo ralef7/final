@@ -23,6 +23,7 @@ class UsersController < ApplicationController
 		@user = User.find_by(:id => params["id"])
 		@user.destroy
 		reset_session	
+		flash[:notice] = "User deleted"
 		redirect_to root_url
 	end
 
@@ -44,8 +45,8 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find(session[:user_id])
-		@follow = Follow.where(:user_id => session[:user_id]).limit(500)
+		@user = current_user
+		@follows = Follow.where(:user_id => session[:user_id]).limit(500)
 	end
 
 	def edit_password

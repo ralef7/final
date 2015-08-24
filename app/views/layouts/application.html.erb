@@ -8,13 +8,13 @@
 </head>
 <body>
 
-
-
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 <ul class="nav navbar-nav navbar-right">
 
-	<% if session[:user_id] && session[:user_id] != nil %>
-		<li> Hello, <%=User.find(session[:user_id]).username %></li>
+	<% if session[:user_id] != nil %>
+		<li> Hello, <%=current_user.username %></li>
+		<li><a href="/account">My Account</a></li>
+		<li><a href="/logout">Sign Out</a></li>
 	<% end %>
 	
 	<% if session[:user_id] == nil %>
@@ -22,15 +22,8 @@
 		<li><a href="/sessions/new">Sign In!</a></li>
 	<% end %>
 
-	<% if session[:user_id] != nil %>
-		<li><a href="/account">My Account</a></li>
-		<li><a href="/logout">Sign Out</a></li>
-	<% end %>
 </ul>
 </div>
-
-
-
 
 <%= yield %>
 <% if notice.present? %>

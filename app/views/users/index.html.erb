@@ -1,5 +1,11 @@
 <h1>Welcome to Twatter!</h1>
-<p>Please sign up and tell us whats on your mind!</p>
+
+<% if session[:user_id] != nil %>
+	<li> Welcome back, <%=current_user.username %></li>
+	<p>Please visit our blogging content and add some of your own!</p>
+<% else %>
+	<p>Please sign up and tell us whats on your mind!</p>
+<% end %>
 
 <p>
 	<%= link_to 'Click here to view user blogs', "/blogs/" %>

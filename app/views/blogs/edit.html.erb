@@ -1,16 +1,16 @@
 <h1>Edit <%= @blog.name %></h1>
 
  <%= form_tag "/blogs/#{@blog.id}", :method => "patch" do %>
- <div>
-  <label>Title</label>
-  <input  type="text" name="name" value= "<%= @blog.name %>">
-</div>
-<div>
-  <label>Description</label>
-  <input  type="text" name="description" value= "<%= @blog.description %>">
-</div>
+	 <div>
+	  <label>Title</label>
+	  <input  type="text" name="name" value= "<%= @blog.name %>">
+	</div>
+	<div>
+	  <label>Description</label>
+	  <input  type="text" name="description" value= "<%= @blog.description %>">
+	</div>
 
-<div>
-  <input type="submit" value= "Update Blog">
-</div>
+	<div>
+	  <input type="submit" value= "Update Blog">
+	</div>
 <% end %>

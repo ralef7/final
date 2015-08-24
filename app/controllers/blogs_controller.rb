@@ -1,9 +1,13 @@
 class BlogsController < ApplicationController
 
-	  before_action :authorize_user, only: [:edit, :update]
+	before_action :get_blog, only: [:show, :edit, :update, :destroy]
+	before_action :authorize_user, only: [:edit, :update]
+
+	def get_blog
+		@blog = Blog.find_by(:id => params["id"])
+	end
 
 	def authorize_user
-		@blog = Blog.find_by(:id => params["id"])
 		if @blog.user_id != session[:user_id].to_i
 			redirect_to root_url, notice: "Nice Try!"
 		end
@@ -14,15 +18,13 @@ class BlogsController < ApplicationController
 	end
 
 	def new
-		@author = User.find(session[:user_id])
+		@author = current_user
 	end
 
 	def edit
-		@blog = Blog.find_by(:id => params["id"])
 	end
 
 	def destroy
-		@blog = Blog.find_by(:id => params["id"])
 		@blog.destroy
 		redirect_to :action => 'index'
 	end
@@ -37,13 +39,11 @@ class BlogsController < ApplicationController
 	end
 
 	def show
-		@blog = Blog.find_by(:id => params[:id])
-		@post = Post.where(:blog_id => @blog.id)
+		@posts = Post.where(:blog_id => @blog.id)
 		@follow = Follow.exists?(:user_id => session[:user_id], :blog_id => @blog.id)
 	end
 
 	def update
-		@blog = Blog.find_by(:id => params["id"])
 		@blog.name = params["name"]
 		@blog.description = params["description"]
 		@blog.save

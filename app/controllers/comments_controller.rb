@@ -1,14 +1,18 @@
 class CommentsController <ApplicationController
 
-	 before_action :authorize_user, only: [:edit, :update]
+	before_action :get_comment, only: [:show, :edit, :update, :delete ]
+	before_action :authorize_user, only: [:edit, :update]
+
+
+	 def get_comment
+	 	@comment = Comment.find_by(:id => params["id"])
+	 end
 
 	def authorize_user
-		@comment = Comment.find_by(:id => params["id"])
 		if @comment.user_id != session[:user_id].to_i
 			redirect_to root_url, notice: "Nice Try!"
 		end
 	end
-
 
 	def new
 	end
@@ -36,13 +40,11 @@ class CommentsController <ApplicationController
 	end
 
 	def delete
-		@comment = Comment.find_by(:id => params["id"])
 		@comment.destroy
 		redirect_to "/posts/#{@comment.post_id}"
 	end
 
 	def show
-		@comment = Comment.find(params["id"])
 	end
 
 end
