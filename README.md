@@ -16,7 +16,7 @@ Controllers and Views:
 
 Feature Choice:
  * Deployment to a public url through heroku.  
-web app deployment url: https://fast-sands-2069.herokuapp.com
+web app deployment url: https://radiant-temple-6801.herokuapp.com
 
 Best Practices:
 
