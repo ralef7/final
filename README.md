@@ -24,3 +24,4 @@ Best Practices:
  * SQL injection additional protection wasn't necessary
  * Passwords secure with BCrypt
  * Only pages users should be able to access with sensitive data on them are their own pages.  All edit pages have user-specific protection.
+ * I had an if in production check in my seeds file (essentially, i wouldn't delete data if my webapp was in production). I had to take it out since I was steadily seeding and re seeding my live deployed app.  
