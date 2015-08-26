@@ -17,6 +17,7 @@ Controllers and Views:
 Feature Choice:
  * Deployment to a public url through heroku.  
 web app deployment url: https://fast-sands-2069.herokuapp.com/
+this site should be virtually identical to what's on localhost:3000.  i think i delete a couple things just to make sure they were working, but no users.
 
 Best Practices:
 
